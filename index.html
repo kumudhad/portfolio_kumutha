@@ -3,379 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <title>D. Kumudha | Resume Portfolio</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-/* ================= RESET ================= */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
-
-/* ================= BODY ================= */
-body{
-    background:#050505;
-    color:#fff;
-    overflow-x:hidden;
-}
-
-/* ================= FRAME BACKGROUND ================= */
-#frame-bg{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100vh;
-    z-index:-10;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    pointer-events:none;
-}
-
-#frame-bg img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    opacity:0.28;            /* watermark transparency */
-}
-
-/* ================= READABILITY LAYER ================= */
-#overlay{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100vh;
-    background:rgba(0,0,0,0.28);
-    z-index:-9;
-}
-
-/* ================= NAVBAR ================= */
-nav{
-    position:fixed;
-    top:0;
-    width:100%;
-    background:rgba(0,0,0,0.6);
-    backdrop-filter:blur(8px);
-    z-index:100;
-}
-
-.navbar{
-    max-width:1100px;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 20px;
-}
-
-.navbar h2{
-    color:#00f5ff;
-}
-
-.navbar ul{
-    list-style:none;
-    display:flex;
-    gap:20px;
-}
-
-.navbar ul li a{
-    color:#fff;
-    text-decoration:none;
-    font-size:14px;
-    transition:0.3s;
-}
-
-.navbar ul li a:hover{
-    color:#00f5ff;
-}
-
-/* ================= CONTAINER ================= */
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:120px 20px 60px;
-    position:relative;
-    z-index:10;
-}
-
-/* ================= HERO ================= */
-.hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-}
-
-.hero-box{
-    background:rgba(0,0,0,0.6);
-    padding:50px;
-    border-radius:20px;
-    box-shadow:0 0 40px rgba(0,255,255,0.15);
-}
-
-.hero-box h1{
-    font-size:48px;
-    color:#00f5ff;
-}
-
-.hero-box h3{
-    margin-top:10px;
-    font-weight:400;
-}
-
-.hero-box p{
-    margin-top:20px;
-    line-height:1.7;
-    opacity:0.95;
-}
-
-.btns{
-    margin-top:25px;
-    display:flex;
-    gap:15px;
-}
-
-.btn{
-    padding:12px 24px;
-    border-radius:30px;
-    border:none;
-    cursor:pointer;
-    font-weight:600;
-}
-
-.btn-primary{
-    background:#00f5ff;
-    color:#000;
-}
-
-.btn-outline{
-    background:transparent;
-    border:1px solid #00f5ff;
-    color:#00f5ff;
-}
-
-/* ================= SECTIONS ================= */
-.section{
-    margin-top:100px;
-    background:rgba(0,0,0,0.55);
-    padding:50px;
-    border-radius:20px;
-}
-
-.section h2{
-    color:#00f5ff;
-    margin-bottom:25px;
-}
-
-/* ================= GRID ================= */
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
-
-/* ================= CARDS ================= */
-.card{
-    background:rgba(255,255,255,0.06);
-    padding:25px;
-    border-radius:15px;
-    transition:0.3s;
-}
-
-.card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 0 25px rgba(0,255,255,0.2);
-}
-
-/* ================= SKILLS ================= */
-.skill{
-    margin-bottom:15px;
-}
-.skill span{
-    display:flex;
-    justify-content:space-between;
-}
-.bar{
-    width:100%;
-    height:8px;
-    background:#222;
-    border-radius:10px;
-    margin-top:6px;
-}
-.fill{
-    height:100%;
-    background:#00f5ff;
-    border-radius:10px;
-}
-
-/* ================= FOOTER ================= */
-footer{
-    text-align:center;
-    margin:80px 0 20px;
-    opacity:0.8;
-    font-size:14px;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- BACKGROUND FRAMES -->
-<div id="frame-bg">
-    <img id="frame-img" src="frames/ezgif-frame-001.jpg">
-</div>
-<div id="overlay"></div>
+<!-- Background Animation Canvas -->
+<canvas id="bgCanvas"></canvas>
 
-<!-- NAV -->
-<nav>
-<div class="navbar">
-    <h2>D. Kumudha</h2>
-    <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#achievements">Achievements</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</div>
-</nav>
+<!-- Main Content -->
+<div class="portfolio-container">
 
-<div class="container">
-
-<!-- HERO -->
-<section class="hero" id="about">
-<div class="hero-box">
+<header>
 <h1>D. Kumudha</h1>
 <h3>Electronics & Communication Engineering</h3>
+<p>3rd Year · Government College of Engineering, Tirunelveli</p>
+<span class="tag">Open to Internships & Opportunities</span>
+</header>
+
+<section class="about">
+<h2>About Me</h2>
 <p>
-3rd Year · Government College of Engineering, Tirunelveli <br><br>
-I'm Kumudha, a passionate Electronics and Communication Engineering student with strong academic foundations and hands-on project experience.
-Driven to build innovative solutions in embedded systems and IoT, aiming for internships, core engineering roles, and tech-driven organizations.
+I'm Kumudha, a passionate Electronics and Communication Engineering student in my 3rd year at Government College of Engineering, Tirunelveli. With a strong academic foundation and hands-on project experience, I'm driven to build innovative solutions in embedded systems and IoT.
 </p>
-
-<div class="btns">
-<button class="btn btn-primary">Download Resume</button>
-<button class="btn btn-outline">Hire Me</button>
-</div>
-</div>
 </section>
 
-<!-- EDUCATION -->
-<section class="section" id="education">
+<section class="stats">
+<div><h3>CGPA</h3><p>7.56</p></div>
+<div><h3>10th</h3><p>100%</p></div>
+<div><h3>12th</h3><p>86%</p></div>
+</section>
+
+<section class="education">
 <h2>Education</h2>
-<div class="grid">
 <div class="card">
-<h3>B.E. Electronics & Communication Engineering</h3>
+<h4>B.E ECE (2022–Present)</h4>
 <p>Government College of Engineering, Tirunelveli</p>
-<p>2022 – Present | CGPA: 7.56</p>
+<p>CGPA: 7.56</p>
 </div>
-
 <div class="card">
-<h3>Higher Secondary (Class 12)</h3>
+<h4>Class 12 (2020–2022)</h4>
 <p>Government Girls Higher Secondary School, Acharapakkam</p>
-<p>2020 – 2022 | Score: 86%</p>
+<p>Score: 86%</p>
 </div>
-
 <div class="card">
-<h3>Secondary School (Class 10)</h3>
+<h4>Class 10 (2019–2020)</h4>
 <p>Government Girls Higher Secondary School, Acharapakkam</p>
-<p>2019 – 2020 | Score: 100%</p>
-</div>
+<p>Score: 100%</p>
 </div>
 </section>
 
-<!-- PROJECTS -->
-<section class="section" id="projects">
+<section class="projects">
 <h2>Projects</h2>
-<div class="grid">
 <div class="card">
-<h3>Smart Door System</h3>
-<p>Intelligent door system for security and automation using embedded sensors and microcontrollers.</p>
-<p>Security Control · Smart Access · Automation</p>
+<h4>Smart Door System</h4>
+<p>Intelligent security door using embedded sensors and microcontrollers.</p>
 </div>
-
 <div class="card">
-<h3>Automated Railway Crossing System</h3>
-<p>Automatic gate control system using sensor-based detection for enhanced safety.</p>
-<p>Safety Automation · Sensor-based Control · Alert System</p>
-</div>
+<h4>Automated Railway Crossing System</h4>
+<p>Sensor-based automatic railway gate control system.</p>
 </div>
 </section>
 
-<!-- SKILLS -->
-<section class="section" id="skills">
+<section class="skills">
 <h2>Skills</h2>
-
-<div class="skill"><span>Core ECE Knowledge <b>85%</b></span><div class="bar"><div class="fill" style="width:85%"></div></div></div>
-<div class="skill"><span>Embedded Systems <b>78%</b></span><div class="bar"><div class="fill" style="width:78%"></div></div></div>
-<div class="skill"><span>Basic Programming <b>70%</b></span><div class="bar"><div class="fill" style="width:70%"></div></div></div>
-<div class="skill"><span>Hardware Projects <b>80%</b></span><div class="bar"><div class="fill" style="width:80%"></div></div></div>
-<div class="skill"><span>Automation Concepts <b>75%</b></span><div class="bar"><div class="fill" style="width:75%"></div></div></div>
-<div class="skill"><span>Communication Skills <b>82%</b></span><div class="bar"><div class="fill" style="width:82%"></div></div></div>
-<div class="skill"><span>Problem Solving <b>88%</b></span><div class="bar"><div class="fill" style="width:88%"></div></div></div>
-
+<ul>
+<li>Core ECE Knowledge</li>
+<li>Embedded Systems</li>
+<li>Basic Programming</li>
+<li>Hardware Projects</li>
+<li>Automation Concepts</li>
+<li>Communication Skills</li>
+<li>Problem Solving</li>
+</ul>
 </section>
 
-<!-- ACHIEVEMENTS -->
-<section class="section" id="achievements">
-<h2>Achievements</h2>
-<div class="grid">
-<div class="card">100% in Class 10 – SSLC Board Examination</div>
-<div class="card">Strong Academic Consistency</div>
-<div class="card">Government School Background Excellence</div>
-<div class="card">Engineering Performance – 7.56 CGPA</div>
-</div>
-</section>
-
-<!-- CONTACT -->
-<section class="section" id="contact">
-<h2>Get In Touch</h2>
-<div class="grid">
-<div class="card">
-<p>Email: kumudha@example.com</p>
-<p>Location: Tirunelveli, Tamil Nadu</p>
-<p>LinkedIn: Profile</p>
-</div>
-
-<div class="card">
-<h3>Send Message</h3>
-<input type="text" placeholder="Your Name" style="width:100%;padding:10px;margin:8px 0;">
-<input type="email" placeholder="Your Email" style="width:100%;padding:10px;margin:8px 0;">
-<textarea placeholder="Your Message" style="width:100%;padding:10px;margin:8px 0;height:100px;"></textarea>
-<button class="btn btn-primary">Send Message</button>
-</div>
-</div>
+<section class="career">
+<h2>Career Objective</h2>
+<p>
+Motivated ECE student aiming to build a strong career in embedded systems and software-driven technologies, seeking opportunities in internships, core engineering roles, and tech-driven organizations to apply my technical knowledge and grow as an engineer.
+</p>
 </section>
 
 <footer>
-© 2025 D. Kumudha · Built with passion
+<p>© 2025 D. Kumudha · Built with passion</p>
 </footer>
 
 </div>
 
-<!-- ================= SCROLL FRAME ENGINE ================= -->
-<script>
-const totalFrames = 240;
-const frameImg = document.getElementById("frame-img");
+<!-- Chat Widget -->
+<div class="chat-widget">
+<div class="chat-header">Resume AI Assistant</div>
+<div class="chat-body" id="chatBody"></div>
+<div class="chat-input">
+<input type="text" id="userInput" placeholder="Ask about Kumudha's resume...">
+<button onclick="sendMessage()">Send</button>
+</div>
+</div>
 
-window.addEventListener("scroll", () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.body.scrollHeight - window.innerHeight;
-    const scrollFraction = scrollTop / docHeight;
-
-    let frameIndex = Math.floor(scrollFraction * totalFrames) + 1;
-
-    if(frameIndex < 1) frameIndex = 1;
-    if(frameIndex > totalFrames) frameIndex = totalFrames;
-
-    const frameNumber = String(frameIndex).padStart(3, '0');
-    frameImg.src = `frames/ezgif-frame-${frameNumber}.jpg`;
-});
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
