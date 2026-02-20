@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+}
+
+/* Makes enough height to allow scrolling */
+.scroll-container {
+  height: 300vh;
+  position: relative;
+}
+
+/* Sticky canvas */
+canvas {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: block;
+}
+
+/* Optional content below animation */
+.content {
+  height: 100vh;
+  background: #111;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
