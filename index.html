@@ -1,24 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Scroll Animation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>D. Kumudha | ECE Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    background:#0a0a0a;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/* ===== Scroll Animation Background ===== */
+#animation-bg{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    z-index:-2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#animation-bg img{
+    width:80%;
+    max-width:900px;
+    opacity:0.12; /* watermark effect */
+    filter: blur(0.3px);
+}
+
+/* Dark overlay for readability */
+#overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background:rgba(0,0,0,0.55);
+    z-index:-1;
+}
+
+/* ===== Layout ===== */
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+/* ===== Navbar ===== */
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+    z-index:100;
+}
+
+.navbar{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 20px;
+}
+
+.navbar h2{
+    color:#00f5ff;
+}
+
+.navbar ul{
+    display:flex;
+    list-style:none;
+    gap:20px;
+}
+
+.navbar ul li a{
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.navbar ul li a:hover{
+    color:#00f5ff;
+}
+
+/* ===== Hero ===== */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+}
+
+.hero-content{
+    background:rgba(0,0,0,0.6);
+    padding:50px;
+    border-radius:20px;
+    box-shadow:0 0 40px rgba(0,255,255,0.1);
+}
+
+.hero h1{
+    font-size:48px;
+    color:#00f5ff;
+}
+
+.hero h3{
+    margin-top:10px;
+    font-weight:400;
+}
+
+.hero p{
+    margin-top:20px;
+    line-height:1.7;
+    opacity:0.9;
+}
+
+.btns{
+    margin-top:25px;
+    display:flex;
+    gap:15px;
+}
+
+.btn{
+    padding:12px 22px;
+    border-radius:30px;
+    border:none;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.btn-primary{
+    background:#00f5ff;
+    color:#000;
+}
+
+.btn-outline{
+    background:transparent;
+    border:1px solid #00f5ff;
+    color:#00f5ff;
+}
+
+/* ===== Sections ===== */
+.section{
+    margin-top:100px;
+    background:rgba(0,0,0,0.55);
+    padding:50px;
+    border-radius:20px;
+}
+
+.section h2{
+    color:#00f5ff;
+    margin-bottom:25px;
+}
+
+/* ===== Grid ===== */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+/* ===== Cards ===== */
+.card{
+    background:rgba(255,255,255,0.05);
+    padding:25px;
+    border-radius:15px;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 25px rgba(0,255,255,0.15);
+}
+
+/* ===== Skills Bars ===== */
+.skill{
+    margin-bottom:15px;
+}
+
+.skill span{
+    display:flex;
+    justify-content:space-between;
+    font-size:14px;
+}
+
+.bar{
+    width:100%;
+    height:8px;
+    background:#222;
+    border-radius:10px;
+    margin-top:5px;
+}
+
+.fill{
+    height:100%;
+    background:#00f5ff;
+    border-radius:10px;
+}
+
+/* ===== Footer ===== */
+footer{
+    text-align:center;
+    margin:80px 0 20px;
+    opacity:0.7;
+    font-size:14px;
+}
+</style>
 </head>
+
 <body>
 
-  <!-- Scroll Animation Section -->
-  <section class="scroll-container">
-    <canvas id="animationCanvas"></canvas>
-  </section>
+<!-- Scroll Animation -->
+<div id="animation-bg">
+    <img id="frame" src="frames/ezgif-frame-001.jpg">
+</div>
+<div id="overlay"></div>
 
-  <!-- Extra Content to Enable Scrolling -->
-  <section class="content">
-    <h1>Scroll Down</h1>
-    <p>This scroll controls the frame-by-frame animation.</p>
-  </section>
+<!-- Navbar -->
+<nav>
+    <div class="navbar">
+        <h2>D. Kumudha</h2>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
 
-  <script src="script.js"></script>
+<div class="container">
+
+<!-- Hero -->
+<section class="hero" id="about">
+    <div class="hero-content">
+        <h1>D. Kumudha</h1>
+        <h3>Electronics & Communication Engineering</h3>
+        <p>
+            3rd Year · Government College of Engineering, Tirunelveli <br><br>
+            I'm Kumudha, a passionate Electronics and Communication Engineering student with strong academic foundations and hands-on project experience. 
+            Driven to build innovative solutions in embedded systems and IoT, aiming for internships, core engineering roles, and tech-driven organizations.
+        </p>
+        <div class="btns">
+            <button class="btn btn-primary">Download Resume</button>
+            <button class="btn btn-outline">Hire Me</button>
+        </div>
+    </div>
+</section>
+
+<!-- Education -->
+<section class="section" id="education">
+<h2>Education</h2>
+<div class="grid">
+    <div class="card">
+        <h3>B.E. Electronics & Communication Engineering</h3>
+        <p>Government College of Engineering, Tirunelveli</p>
+        <p>2022 – Present | CGPA: 7.56</p>
+    </div>
+    <div class="card">
+        <h3>Higher Secondary (Class 12)</h3>
+        <p>Government Girls Higher Secondary School, Acharapakkam</p>
+        <p>2020 – 2022 | Score: 86%</p>
+    </div>
+    <div class="card">
+        <h3>Secondary School (Class 10)</h3>
+        <p>Government Girls Higher Secondary School, Acharapakkam</p>
+        <p>2019 – 2020 | Score: 100%</p>
+    </div>
+</div>
+</section>
+
+<!-- Projects -->
+<section class="section" id="projects">
+<h2>Projects</h2>
+<div class="grid">
+    <div class="card">
+        <h3>Smart Door System</h3>
+        <p>An intelligent door system for security and automation using embedded sensors and microcontrollers.</p>
+        <p>Security Control · Smart Access · Automation</p>
+    </div>
+    <div class="card">
+        <h3>Automated Railway Crossing System</h3>
+        <p>Automatic gate control system using sensor-based detection for enhanced safety.</p>
+        <p>Safety Automation · Sensor Control · Alert System</p>
+    </div>
+</div>
+</section>
+
+<!-- Skills -->
+<section class="section" id="skills">
+<h2>Skills</h2>
+<div class="skill"><span>Core ECE Knowledge <b>85%</b></span><div class="bar"><div class="fill" style="width:85%"></div></div></div>
+<div class="skill"><span>Embedded Systems <b>78%</b></span><div class="bar"><div class="fill" style="width:78%"></div></div></div>
+<div class="skill"><span>Basic Programming <b>70%</b></span><div class="bar"><div class="fill" style="width:70%"></div></div></div>
+<div class="skill"><span>Hardware Projects <b>80%</b></span><div class="bar"><div class="fill" style="width:80%"></div></div></div>
+<div class="skill"><span>Automation Concepts <b>75%</b></span><div class="bar"><div class="fill" style="width:75%"></div></div></div>
+<div class="skill"><span>Communication Skills <b>82%</b></span><div class="bar"><div class="fill" style="width:82%"></div></div></div>
+<div class="skill"><span>Problem Solving <b>88%</b></span><div class="bar"><div class="fill" style="width:88%"></div></div></div>
+</section>
+
+<!-- Achievements -->
+<section class="section" id="achievements">
+<h2>Achievements</h2>
+<div class="grid">
+    <div class="card">100% in Class 10 – SSLC Board Examination</div>
+    <div class="card">Strong Academic Consistency</div>
+    <div class="card">Government School Background Excellence</div>
+    <div class="card">Engineering Performance – 7.56 CGPA</div>
+</div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact">
+<h2>Get In Touch</h2>
+<div class="grid">
+    <div class="card">
+        <p>Email: kumudha@example.com</p>
+        <p>Location: Tirunelveli, Tamil Nadu</p>
+        <p>LinkedIn: Profile</p>
+    </div>
+    <div class="card">
+        <h3>Send Message</h3>
+        <input type="text" placeholder="Your Name" style="width:100%;padding:10px;margin:8px 0;">
+        <input type="email" placeholder="Your Email" style="width:100%;padding:10px;margin:8px 0;">
+        <textarea placeholder="Your Message" style="width:100%;padding:10px;margin:8px 0;height:100px;"></textarea>
+        <button class="btn btn-primary">Send Message</button>
+    </div>
+</div>
+</section>
+
+<footer>
+© 2025 D. Kumudha · Built with passion
+</footer>
+
+</div>
+
+<!-- Scroll Animation Script -->
+<script>
+const totalFrames = 240;
+const frame = document.getElementById("frame");
+
+window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollFraction = scrollTop / docHeight;
+    let frameIndex = Math.min(totalFrames, Math.floor(scrollFraction * totalFrames) + 1);
+    let frameNumber = String(frameIndex).padStart(3, '0');
+    frame.src = `frames/ezgif-frame-${frameNumber}.jpg`;
+});
+</script>
+
 </body>
 </html>
