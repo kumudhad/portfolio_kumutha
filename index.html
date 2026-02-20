@@ -2,293 +2,126 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>D. Kumudha | ECE Portfolio</title>
+<title>Scrollable Frame Background</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+/* ===== RESET ===== */
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
 }
 
+/* ===== BODY ===== */
 body{
-    background:#050505;
+    font-family:Arial, sans-serif;
+    background:#000;
     color:#fff;
-    overflow-x:hidden;
+    min-height:300vh; /* just for scroll demo */
 }
 
-/* ===== CANVAS BACKGROUND ===== */
-#bg-canvas{
+/* ===== FRAME BACKGROUND ===== */
+#frame-bg{
     position:fixed;
     top:0;
     left:0;
     width:100%;
     height:100vh;
-    z-index:-3;
+    z-index:-5;              /* behind everything */
+    display:flex;
+    justify-content:center;
+    align-items:center;
     pointer-events:none;
 }
 
-/* Soft overlay for readability */
-#overlay{
+#frame-bg img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    opacity:0.35;            /* watermark visibility */
+}
+
+/* ===== DARK READABILITY LAYER ===== */
+#dark-layer{
     position:fixed;
     top:0;
     left:0;
     width:100%;
     height:100vh;
     background:rgba(0,0,0,0.25);
-    z-index:-2;
+    z-index:-4;
 }
 
-/* ===== Layout ===== */
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:60px 20px;
+/* ===== CONTENT ===== */
+.content{
     position:relative;
-    z-index:1;
+    z-index:10;
+    padding:100px;
 }
 
-/* ===== Navbar ===== */
-nav{
-    position:fixed;
-    top:0;
-    width:100%;
-    background:rgba(0,0,0,0.55);
-    backdrop-filter: blur(6px);
-    z-index:100;
-}
-
-.navbar{
-    max-width:1100px;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 20px;
-}
-
-.navbar h2{color:#00f5ff;}
-
-.navbar ul{
-    display:flex;
-    list-style:none;
-    gap:20px;
-}
-
-.navbar ul li a{
-    color:#fff;
-    text-decoration:none;
-    font-size:14px;
-}
-
-/* ===== Hero ===== */
-.hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-}
-
-.hero-content{
-    background:rgba(0,0,0,0.55);
-    padding:50px;
-    border-radius:20px;
-    box-shadow:0 0 40px rgba(0,255,255,0.15);
-}
-
-.hero h1{
-    font-size:48px;
-    color:#00f5ff;
-}
-
-.hero h3{margin-top:10px;font-weight:400;}
-.hero p{margin-top:20px;line-height:1.7;}
-
-.btns{margin-top:25px;display:flex;gap:15px;}
-.btn{padding:12px 22px;border-radius:30px;border:none;cursor:pointer;font-weight:600;}
-.btn-primary{background:#00f5ff;color:#000;}
-.btn-outline{background:transparent;border:1px solid #00f5ff;color:#00f5ff;}
-
-/* ===== Sections ===== */
 .section{
-    margin-top:100px;
-    background:rgba(0,0,0,0.50);
-    padding:50px;
-    border-radius:20px;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
-
-.card{
-    background:rgba(255,255,255,0.06);
-    padding:25px;
+    background:rgba(0,0,0,0.6);
+    padding:40px;
     border-radius:15px;
-}
-
-.skill{margin-bottom:15px;}
-.skill span{display:flex;justify-content:space-between;}
-.bar{width:100%;height:8px;background:#222;border-radius:10px;margin-top:5px;}
-.fill{height:100%;background:#00f5ff;border-radius:10px;}
-
-footer{
-    text-align:center;
-    margin:80px 0 20px;
-    opacity:0.8;
+    margin-bottom:60px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- CANVAS BACKGROUND -->
-<canvas id="bg-canvas"></canvas>
-<div id="overlay"></div>
-
-<!-- NAV -->
-<nav>
-<div class="navbar">
-<h2>D. Kumudha</h2>
-<ul>
-<li><a href="#about">About</a></li>
-<li><a href="#education">Education</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#skills">Skills</a></li>
-<li><a href="#achievements">Achievements</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</div>
-</nav>
-
-<div class="container">
-
-<section class="hero" id="about">
-<div class="hero-content">
-<h1>D. Kumudha</h1>
-<h3>Electronics & Communication Engineering</h3>
-<p>
-3rd Year · Government College of Engineering, Tirunelveli <br><br>
-I'm Kumudha, a passionate Electronics and Communication Engineering student with strong academic foundations and hands-on project experience. 
-Driven to build innovative solutions in embedded systems and IoT, aiming for internships, core engineering roles, and tech-driven organizations.
-</p>
-<div class="btns">
-<button class="btn btn-primary">Download Resume</button>
-<button class="btn btn-outline">Hire Me</button>
-</div>
-</div>
-</section>
-
-<section class="section" id="education">
-<h2>Education</h2>
-<div class="grid">
-<div class="card">B.E. ECE<br>GCE Tirunelveli<br>CGPA: 7.56</div>
-<div class="card">Class 12<br>GGHSS Acharapakkam<br>86%</div>
-<div class="card">Class 10<br>GGHSS Acharapakkam<br>100%</div>
-</div>
-</section>
-
-<section class="section" id="projects">
-<h2>Projects</h2>
-<div class="grid">
-<div class="card">Smart Door System<br>Embedded Security Automation</div>
-<div class="card">Automated Railway Crossing System<br>Sensor Based Safety System</div>
-</div>
-</section>
-
-<section class="section" id="skills">
-<h2>Skills</h2>
-<div class="skill"><span>Core ECE <b>85%</b></span><div class="bar"><div class="fill" style="width:85%"></div></div></div>
-<div class="skill"><span>Embedded Systems <b>78%</b></span><div class="bar"><div class="fill" style="width:78%"></div></div></div>
-<div class="skill"><span>Programming <b>70%</b></span><div class="bar"><div class="fill" style="width:70%"></div></div></div>
-</section>
-
-<section class="section" id="achievements">
-<h2>Achievements</h2>
-<div class="grid">
-<div class="card">100% in Class 10</div>
-<div class="card">Strong Academic Consistency</div>
-<div class="card">Government School Excellence</div>
-<div class="card">7.56 CGPA in Engineering</div>
-</div>
-</section>
-
-<section class="section" id="contact">
-<h2>Contact</h2>
-<div class="grid">
-<div class="card">Email: kumudha@example.com<br>Location: Tirunelveli</div>
-<div class="card">
-<input placeholder="Your Name" style="width:100%;padding:10px;margin:6px 0;">
-<input placeholder="Your Email" style="width:100%;padding:10px;margin:6px 0;">
-<textarea placeholder="Message" style="width:100%;padding:10px;margin:6px 0;"></textarea>
-<button class="btn btn-primary">Send</button>
-</div>
-</div>
-</section>
-
-<footer>© 2025 D. Kumudha · Built with passion</footer>
-
+<!-- FRAME BACKGROUND -->
+<div id="frame-bg">
+    <img id="frame-img" src="frames/ezgif-frame-001.jpg">
 </div>
 
-<!-- ===== SCROLL ANIMATION ENGINE ===== -->
+<!-- DARK LAYER -->
+<div id="dark-layer"></div>
+
+<!-- CONTENT -->
+<div class="content">
+    <div class="section">
+        <h1>My Resume Portfolio</h1>
+        <p>Scroll to see background animation running...</p>
+    </div>
+
+    <div class="section">
+        <h2>Section 1</h2>
+        <p>Content over animated background</p>
+    </div>
+
+    <div class="section">
+        <h2>Section 2</h2>
+        <p>Frames running in background</p>
+    </div>
+
+    <div class="section">
+        <h2>Section 3</h2>
+        <p>Animation is scroll synced</p>
+    </div>
+</div>
+
 <script>
-const canvas = document.getElementById('bg-canvas');
-const ctx = canvas.getContext('2d');
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+/* ===== FRAME ANIMATION ENGINE ===== */
 
 const totalFrames = 240;
-const images = [];
-let loaded = 0;
+const img = document.getElementById("frame-img");
 
-/* Load frames */
-for(let i=1;i<=totalFrames;i++){
-    const img = new Image();
-    const num = String(i).padStart(3,'0');
-    img.src = `frames/ezgif-frame-${num}.jpg`;
-    img.onload = ()=>{
-        loaded++;
-        if(loaded === 1){
-            drawImage(img);
-        }
-    }
-    images.push(img);
-}
+window.addEventListener("scroll", () => {
 
-/* Resize */
-window.addEventListener('resize',()=>{
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
-
-/* Draw */
-function drawImage(img){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-
-    const scale = Math.min(canvas.width/img.width, canvas.height/img.height);
-    const x = (canvas.width/2) - (img.width/2)*scale;
-    const y = (canvas.height/2) - (img.height/2)*scale;
-
-    ctx.globalAlpha = 0.35;  // watermark transparency
-    ctx.drawImage(img,x,y,img.width*scale,img.height*scale);
-}
-
-/* Scroll sync */
-window.addEventListener('scroll',()=>{
     const scrollTop = window.scrollY;
     const docHeight = document.body.scrollHeight - window.innerHeight;
     const scrollFraction = scrollTop / docHeight;
 
-    let frameIndex = Math.floor(scrollFraction * (totalFrames-1));
-    frameIndex = Math.max(0, Math.min(totalFrames-1, frameIndex));
+    let frameIndex = Math.floor(scrollFraction * totalFrames) + 1;
 
-    if(images[frameIndex]){
-        drawImage(images[frameIndex]);
-    }
+    if(frameIndex < 1) frameIndex = 1;
+    if(frameIndex > totalFrames) frameIndex = totalFrames;
+
+    const frameNumber = String(frameIndex).padStart(3,'0');
+    img.src = `frames/ezgif-frame-${frameNumber}.jpg`;
+
 });
 </script>
 
